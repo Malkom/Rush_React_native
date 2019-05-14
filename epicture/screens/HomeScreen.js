@@ -11,13 +11,21 @@ import {
 import { WebBrowser } from 'expo';
 
 import { MonoText } from '../components/StyledText';
+import {_getHotImages} from "../API/ImgurAPI";
+
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
     header: null
   };
 
+  _loadHotImages() {
+    _getHotImages().then(data => console.log(data));
+  }
+
+
   render() {
+    this._loadHotImages()
     return (
       <View style={styles.container}>
         <ScrollView
