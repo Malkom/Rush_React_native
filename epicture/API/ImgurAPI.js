@@ -10,10 +10,7 @@ const path = '/3/image/NhF6ava';
 let options = {
     'method': 'GET',
     'headers': {
-        // 'Authorization': 'Bearer' + bearer,
-        // 'Accept': 'application/json',
-        // 'Content-Type': 'application/x-www-form-urlencoded',
-        'Authorization': 'Client-ID ' + clientId
+        'Authorization': `Client-ID ${clientId}`
     }
 };
 
