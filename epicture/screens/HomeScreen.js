@@ -37,8 +37,6 @@ export default class HomeScreen extends React.Component {
 
 
   render() {
-    // console.log('RENDER');
-    console.log(this.state.images);
     return (
         <ScrollView>
           <Button title='Query test'  onPress={() => this._loadHotImages()}/>
