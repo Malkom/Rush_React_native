@@ -20,19 +20,15 @@ export default class HomeScreen extends React.Component {
     this. state = {
       images: []
     }
-
-    // this.state = {
-    //   _images: []
-    // }
   }
 
   _loadHotImages() {
     _getHotImages()
-        .then(results => {this.setState({images: results.data })
-          .catch((error) => {
+        .then(results => {this.setState({images: results.data })})
+        .catch((error) => {
             console.error(error);
-          })
         })
+
   }
 
 
@@ -41,11 +37,11 @@ export default class HomeScreen extends React.Component {
         <ScrollView>
           <Button title='Query test'  onPress={() => this._loadHotImages()}/>
           <Text>
-            {this.state.images.views}
+
           </Text>
 
           <Image
-              style={{width: 350, height: 350}}
+              style={{width: 300, height: 300}}
               source={{uri: this.state.images.link}} />
 
         </ScrollView>
