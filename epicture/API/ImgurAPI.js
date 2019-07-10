@@ -9,7 +9,7 @@ const hostname = 'https://api.imgur.com/3/';
 
 ///// GET IMAGE WITH ID ////// HAVE TO MODIFY
 export function _getHotImages (){
-    const path = 'image/NhF6ava';
+    const path = 'gallery/hot';
 
     let options = {
         'method': 'GET',

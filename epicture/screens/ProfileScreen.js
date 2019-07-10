@@ -53,7 +53,7 @@ export default class ProfileScreen extends React.Component {
             .catch((error) => {
                 console.error(error);
             });
-        console.log('Avatar', this.state.accountImages);
+        // console.log('Avatar', this.state.accountImages);
     }
 
 
@@ -68,7 +68,7 @@ export default class ProfileScreen extends React.Component {
 
         if (Object.keys(this.state.accountData).length > 0) {
 
-            console.log(this.state.accountData);
+            // console.log(this.state.accountData);
             return (
 
                 <ImageBackground
@@ -91,7 +91,7 @@ export default class ProfileScreen extends React.Component {
                         <View style={styles.scene}>
 
                             <View style={styles.profile}>
-                                {console.log('Images Account : ', this.state.accountImages)}
+                                {/*{console.log('Images Account : ', this.state.accountImages)}*/}
                                 <FlatList
                                     data={this.state.accountImages}
                                     keyExtractor={(item) => item.id.toString()}
