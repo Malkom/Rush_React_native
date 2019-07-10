@@ -1,24 +1,69 @@
 const clientId = '8defc05d2a54813';
-const clientSecret = '6aa48fdc84b59ee0f04a9dd80e4f46b50da790fb';
-const accessToken = 'a4d39fa9e508527d37c8dd90addfa3bd448842e5';
+const clientSecret = 'a65ac590bbc7a5bb10bd1cc6142095158ed87f96';
 const refreshToken = '9c5a83acc413de4f7ee6e856130ce37549c43ee6';
-const bearer = '9ac56dccf83b4cd7a88abf943e9602f4d32180a8';
 
-const hostname = 'https://api.imgur.com';
-const path = '/3/image/NhF6ava';
 
-let options = {
-    'method': 'GET',
-    'headers': {
-        'Authorization': `Client-ID ${clientId}`
-    }
-};
+const hostname = 'https://api.imgur.com/3/';
 
+
+
+///// GET IMAGE WITH ID ////// HAVE TO MODIFY
 export function _getHotImages (){
+    const path = 'gallery/hot';
+
+    let options = {
+        'method': 'GET',
+        'headers': {
+            'Authorization': `Client-ID ${clientId}`
+        }
+    };
+
+    return fetch(hostname + path, options)
+        .then(response => response.json())
+        .catch((error) => {
+            console.error(error);
+        });
+}
+
+///// GET ACCOUNT DATA //////
+export function _getAccountImages (token) {
+    const path = 'account/me/images';
+    // let test_token = '36889c6d77e22308c2a4c117992a3bf7e1c5e7ed';
+
+
+    let options = {
+        'method': 'GET',
+        'headers': {
+            'cache-control': 'no-cache',
+            'Authorization': `Bearer ${token}`,
+            "Content-Type": "application/x-www-form-urlencoded",
+        }
+    };
     return fetch(hostname + path, options)
         .then((response) => response.json())
         .catch((error) => {
             console.error(error);
         });
+
+}
+
+///// GET ACCOUNT AVATAR //////
+    export function _getAccountData (username, token) {
+        const path = 'account/';
+
+
+        let options = {
+            'method': 'GET',
+            'headers': {
+                'cache-control': 'no-cache',
+                'Authorization': `Bearer ${token}`
+            }
+        };
+        return fetch(hostname + path + username, options)
+            .then((response) => response.json())
+            .catch((error) => {
+                console.error(error);
+            });
+
 }
 

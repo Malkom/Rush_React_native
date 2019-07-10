@@ -7,7 +7,8 @@ import {
   Text,
   TouchableOpacity,
   View,
-  Button
+  Button,
+  FlatList
 } from 'react-native';
 
 import {_getHotImages} from "../API/ImgurAPI";
@@ -17,38 +18,56 @@ export default class HomeScreen extends React.Component {
   constructor(props) {
     super(props);
 
-    this. state = {
-      images: []
+    this.state = {
+      images: [],
     }
-
-    // this.state = {
-    //   _images: []
-    // }
   }
 
   _loadHotImages() {
     _getHotImages()
-        .then(results => {this.setState({images: results.data })
-          .catch((error) => {
+        .then(results => {this.setState({images: results.data })})
+        .catch((error) => {
             console.error(error);
-          })
         })
+
   }
 
 
   render() {
+    // console.log('Images : ', this.state.images);
+    if (this.state.images){
+      Object.keys(this.state.images).map(key => {
+        if (this.state.images[key]) {
+          console.log('Images Id : ', this.state.images[key].id);
+        }
+      });
+    }
+    else
+      console.log("Pas de data");
+
+
     return (
-        <ScrollView>
+        <View>
           <Button title='Query test'  onPress={() => this._loadHotImages()}/>
-          <Text>
-            {this.state.images.views}
-          </Text>
+          <FlatList
+              data={this.state.images}
+              keyExtractor={(item) => this.state.images[item].id.toString()}
+              renderItem={({item}) => <View style={styles.postcontainer}>
+                <Image
+                    style={styles.postImage}
+                    source={{uri:this.state.images[item].images.link}}
+                />
+                <View>
+                  <Text style={[styles.font, styles.imagedata]}>{this.state.images[item].images.views}</Text>
+                </View>
+              </View> }
+          />
 
-          <Image
-              style={{width: 350, height: 350}}
-              source={{uri: this.state.images.link}} />
+          {/*<Image*/}
+          {/*    style={{width: 300, height: 300}}*/}
+          {/*    source={{uri: this.state.images.link}} />*/}
 
-        </ScrollView>
+        </View>
     )
   }
 
@@ -144,5 +163,19 @@ const styles = StyleSheet.create({
   helpLinkText: {
     fontSize: 14,
     color: '#2e78b7'
-  }
+  },
+  postcontainer: {
+    flex: 1,
+    flexDirection: 'row',
+    marginTop: 5,
+  },
+  postImage: {
+    height: 100,
+    width: 100,
+  },
+  imagedata: {
+    fontSize: 13,
+    marginLeft: 10,
+  },
+
 });
