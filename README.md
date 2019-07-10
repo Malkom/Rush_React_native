@@ -18,4 +18,4 @@ Rush of end of cycle on React Native
 
 Realization of an application, Imgur like.
 
-Released with Thibaud Levy
+Realized with Thibaud Levy
